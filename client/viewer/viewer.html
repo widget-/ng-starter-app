@@ -1,0 +1,49 @@
+<md-sidenav layout="column" class="md-whiteframe-5dp" md-component-id="sidenav">
+  <md-toolbar class="md-primary md-tall">
+
+  </md-toolbar>
+</md-sidenav>
+
+<md-content flex layout="column">
+
+  <md-toolbar class="md-primary">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" ng-click="vm.showLeftSidenav()">
+        <md-icon class="material-icons">menu</md-icon>
+      </md-button>
+      <h2>Kafka viewer</h2>
+      <div flex></div>
+    </div>
+  </md-toolbar>
+
+  <md-content layout="row" layout-align="center stretch" style="height:100%;">
+
+    <div ng-if="!vm.panels.length">
+      Click the
+      <md-button class="md-primary md-fab" ng-click="vm.addPanel($event)">
+        <md-icon class="material-icons">add</md-icon>
+      </md-button>
+      button to add a panel
+    </div>
+
+    <!--<div class="border:1px solid rgba(128,128,128,0.4)">-->
+      <md-list flex ng-repeat="topic in vm.panels" class="md-whiteframe-2dp" style="margin:0 1px">
+        <md-subheader class="md-accent">
+          {{ topic.name }}
+        </md-subheader>
+        <div ng-repeat="message in topic.messages">
+          <md-divider ng-if="!$first"></md-divider>
+          <md-list-item>
+            {{ message }}
+          </md-list-item>
+        </div>
+      </md-list>
+    <!--</div>-->
+
+    <md-button class="md-fab md-fab-bottom-right" ng-click="vm.addPanel($event)">
+      <md-icon class="material icons">add</md-icon>
+    </md-button>
+
+  </md-content>
+
+</md-content>
